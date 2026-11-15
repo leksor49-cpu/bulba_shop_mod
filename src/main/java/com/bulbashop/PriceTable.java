@@ -89,22 +89,25 @@ public final class PriceTable {
     }
 
     private static double rawPrice(Item item) {
-        ItemStack s = item.getDefaultInstance();
-        if (s.is(ItemTags.LOGS)) return 6;
-        if (s.is(ItemTags.SAPLINGS)) return 6;
-        if (s.is(ItemTags.FLOWERS)) return 3;
-        if (s.is(ItemTags.LEAVES)) return 1;
-        if (s.is(Tags.Items.ORES)) return 60;
-        if (s.is(Tags.Items.GEMS)) return 60;
-        if (s.is(Tags.Items.RAW_MATERIALS)) return 20;
-        if (s.is(Tags.Items.INGOTS)) return 25;
-        Rarity r = s.getRarity();
-        return switch (r) {
-            case COMMON -> 6;
-            case UNCOMMON -> 40;
-            case RARE -> 150;
-            case EPIC -> 600;
-        };
+        try {
+            ItemStack s = item.getDefaultInstance();
+            if (s.is(ItemTags.LOGS)) return 6;
+            if (s.is(ItemTags.SAPLINGS)) return 6;
+            if (s.is(ItemTags.FLOWERS)) return 3;
+            if (s.is(ItemTags.LEAVES)) return 1;
+            if (s.is(Tags.Items.ORES)) return 60;
+            if (s.is(Tags.Items.GEMS)) return 60;
+            if (s.is(Tags.Items.RAW_MATERIALS)) return 20;
+            if (s.is(Tags.Items.INGOTS)) return 25;
+            Rarity r = s.getRarity();
+            // моды добавляют свои редкости, поэтому switch тут нельзя - только сравнения
+            if (r == Rarity.COMMON) return 6;
+            if (r == Rarity.UNCOMMON) return 40;
+            if (r == Rarity.RARE) return 150;
+            return 600;
+        } catch (Exception e) {
+            return 6;
+        }
     }
 
     private record Rec(Item out, int count, List<Item[]> ings) {}
