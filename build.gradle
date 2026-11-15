@@ -1,0 +1,32 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '1.0.17'
+}
+
+version = '1.0.0'
+group = 'com.bulbashop'
+
+base {
+    archivesName = 'bulbashop'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    mavenCentral()
+}
+
+neoForge {
+    version = '21.1.229'
+
+    runs {
+        client { client() }
+        server { server() }
+    }
+
+    mods {
+        bulbashop {
+            sourceSet sourceSets.main
+        }
+    }
+}

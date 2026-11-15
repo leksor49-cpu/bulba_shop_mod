@@ -1,0 +1,23 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="bulbashop"
+version="1.0.0"
+displayName="Bulba Shop"
+description='''Магазин в инвентаре. Валюта - бульбакоины. Цены считаются автоматически по рецептам.'''
+
+[[dependencies.bulbashop]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.bulbashop]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
